@@ -70,86 +70,228 @@ header {
 
 
 
-/*FILTERS*/
+
+
+
+
+
+
+
+
+/*Filters*/
 
 @keyframes showFilters {
     0% {
         opacity: 0;
-        margin-bottom: -12px;
-    }
+        margin-bottom: -12px;}
     20% {
-        margin-bottom: 16px;
-    }
+        margin-bottom: 16px;}
     100% {
         opacity: 1;
-        margin-bottom: 16px;
-    }
-}
+        margin-bottom: 16px; }}
 
-@keyframes hideme {
+@keyframes hideFilters {
     0% {
         opacity: 1;
-    }
+        margin-bottom: 16px;}
+    50% {
+        opacity: 0;}
     100% {
         opacity: 0;
-    }
-}
+        margin-bottom: -12px; }}
 
-@keyframes showme {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
+@keyframes hideme {0%{ opacity: 1; } 100%{ opacity: 0; }}
 
-@keyframes dot_on {
-    0% {
-        left: 1px;
-    }
-    100% {
-        left: 24px;
-    }
-}
+@keyframes showme {0%{ opacity: 0; } 100% { opacity: 1; }}
 
-@keyframes dot_off {
-    0% {
-        left: 24px;
-    }
-    100% {
-        left: 1px;
-    }
-}
+@keyframes dot_on {0%{ left: 1px; } 100%{ left: 24px; }}
 
-input[type="checkbox"] {
-    display: none;
-}
+@keyframes dot_off {0%{ left: 24px; } 100%{ left: 1px; }}
+
 
 #filters_button {
     position: absolute;
-    background-color: #FF5E00;
-    padding:26px 60px 0 0;
+    /* background-color: #FF5E00; */
+    padding:26px 96px 0 0;
     text-align:center;
     opacity:0.2;
     cursor: pointer;
-    left:645px;
+    left:628px;
+    z-index: 100;
 }
 
-#filters ~ div {
+.filter {
     margin: -12px auto;
-    opacity: 0;
+    opacity: 1;
 }
 
-#filters:checked ~ div {
-    animation: showFilters 4s forwards;
+.filtersOpened ~ .filterFilter {
+    animation: showFilters 2s forwards;
 }
-#filters:checked ~ h2:before {
-    content: "Close ";
+
+.filtersClosed ~ .filterFilter {
+    animation: hideFilters 0.5s forwards;
 }
-#filters:checked ~ #filters_button {
-    padding: 26px 134px 0 0;
-    left: 607px;
+
+
+
+
+
+
+
+
+/* Filters ICON */
+
+
+
+
+
+@keyframes f1open {
+    0%      { background-color: #FF5E00; width: 16px; margin: 3px 0 0; transform: rotate(0deg);}
+    100%    { background-color: #4e5657; width: 20px; margin: 9px 0 0; transform: rotate(45deg); }
+}
+
+@keyframes f1close {
+    0%      { background-color: #4e5657; width: 20px; margin: 9px 0 0; transform: rotate(45deg);}
+    100%    { background-color: #FF5E00; width: 16px; margin: 3px 0 0; transform: rotate(0deg);}
+}
+    
+@keyframes f2open {
+    0%      { background-color: #FF5E00; width: 13px; margin: 3px 0; opacity: 1;}
+    100%    { background-color: #4e5657; width: 0px; margin: -3px 3px;  opacity: 0;}
+}
+
+@keyframes f2close {
+    0%      { background-color: #4e5657; width: 0px; margin: -3px 3px; opacity: 0;}
+    100%    { background-color: #FF5E00; width: 13px; margin: 3px 0; opacity: 1;}
+}
+
+@keyframes f3open {
+    0%      { background-color: #FF5E00; margin: 3px 0; transform: rotate(0deg);}
+    100%    { background-color: #4e5657; margin: -3px 0; transform: rotate(-45deg);}
+}
+
+@keyframes f3close {
+    0%      { background-color: #4e5657; margin: -3px 0; transform: rotate(-45deg);}
+    100%    { background-color: #FF5E00; margin: 3px 0 0; transform: rotate(0deg);}
+}
+
+
+
+#filterIcon {
+    display: inline-block;
+    margin-bottom: -2px;
+    width: 21px;
+    height: 21px;
+}
+
+#filterIcon div {
+    padding: 0;
+    width: 20px;
+    height: 3px;
+    border-radius: 1.5px;
+}
+
+.filtersClosed ~ h2 #filterIcon #f1 { animation: f1close 0.6s forwards;}
+.filtersOpened ~ h2 #filterIcon #f1 { animation: f1open 0.6s forwards;}
+
+.filtersClosed ~ h2 #filterIcon #f2 { animation: f2close 0.6s forwards;}
+.filtersOpened ~ h2 #filterIcon #f2 { animation: f2open 0.6s forwards;}
+
+.filtersClosed ~ h2 #filterIcon #f3 { animation: f3close 0.6s forwards;}
+.filtersOpened ~ h2 #filterIcon #f3 { animation: f3open 0.6s forwards;}
+
+
+
+
+
+
+
+/* NEW GENERATION FILTER SWITCH */
+
+@keyframes filterSwitchOn { 0%{ background-color: #bbbbbb; } 100%{ background-color: #FF5E00/* #27c527 */; } }
+@keyframes filterSwitchOff { 0%{ background-color: #FF5E00/* #27c527 */; } 100%{ background-color: #bbbbbb; } }
+/* Using showme / hideme
+@keyframes filterOnOn { 0%{ background-color: #4e5657; } 100%{ background-color: #27c527; } }
+@keyframes filterOnOff { 0%{ background-color: #27c527; } 100%{ background-color: #4e5657; } }
+
+@keyframes filterOffOn { 0%{ background-color: #4e5657; } 100%{ background-color: #27c527; } }
+@keyframes filterOffOff { 0%{ background-color: #27c527; } 100%{ background-color: #4e5657; } } */
+
+@keyframes filterDotOn { 0%{ right: 24px; } 100%{ right: 0px; } }
+@keyframes filterDotOff { 0%{ right: 0px; } 100%{ right: 24px; } }
+
+.filterFilter {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 14px;
+}
+
+.filterFilter * { display: inline-block;}
+
+.filterSwitch {
+    position: relative;
+    width: 44px;
+    height: 21px;
+    border: solid 2px #7f7f7f;
+    border-radius: 12px;
+    background-color: #27c527;
+}
+.filterIsOn .filterSwitch { animation: filterSwitchOn 1s forwards }
+.filterIsOff .filterSwitch { animation: filterSwitchOff 1s forwards }
+
+
+
+.filterOn {
+    position: relative;
+    padding: 2px 0 1px 2px;
+}
+.filterIsOn .filterOn { animation: showme 1s forwards }
+.filterIsOff .filterOn { animation: hideme 1s forwards }
+
+.filterOff {
+    position: absolute;
+    padding: 2px 0 0 0;
+    right: 4px;
+}
+.filterIsOn .filterOff { animation: hideme 1s forwards }
+.filterIsOff .filterOff { animation: showme 1s forwards }
+
+.filterDot {
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    top: 1px;
+}
+.filterIsOn .filterDot { animation: filterDotOn 1s forwards }
+.filterIsOff .filterDot { animation: filterDotOff 1s forwards }
+
+.filterCategory {
+    padding-left: 3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+input[type="checkbox"] {
+    display: none;
 }
 
 #filter1 {
@@ -161,6 +303,8 @@ input[type="checkbox"] {
     height: 21px;    
     position: relative;
 }
+
+
 
 .switch {
     position:absolute;
@@ -186,7 +330,7 @@ input[type="checkbox"] {
     padding: 21px 45px 0px 0;
     background-color: #bbbbbb;
     border-radius: 12px;
-    animation: showme 0.8s forwards;
+    animation: showme 0.6s forwards;
 }
 
 .switch_on {
@@ -194,7 +338,7 @@ input[type="checkbox"] {
     padding: 4px 6px 1px 5px;
     top: -2px;
     left: -3px;
-    animation: hideme 0.8s forwards;
+    animation: hideme 0.6s forwards;
 }
 
 .switch_off {
@@ -202,7 +346,7 @@ input[type="checkbox"] {
     padding: 4px 6px 1px 6px;
     top: -2px;
     left: 15px;
-    animation: showme 0.8s forwards;
+    animation: showme 0.6s forwards;
 }
 
 .switch_dot {
@@ -212,23 +356,23 @@ input[type="checkbox"] {
     border-radius: 50%;
     top: 1px;
     left: 1px;
-    animation: dot_off 0.8s forwards;
+    animation: dot_off 0.6s forwards;
 }
 
 #switch:checked ~ .redbg {
-    animation: hideme 0.8s forwards;
+    animation: hideme 0.6s forwards;
 }
 
 #switch:checked ~ .switch_on {
-    animation: showme 0.8s forwards;
+    animation: showme 0.6s forwards;
 }
 
 #switch:checked ~ .switch_off {
-    animation: hideme 0.8s forwards;
+    animation: hideme 0.6s forwards;
 }
 
 #switch:checked ~ .switch_dot {
-    animation: dot_on 0.8s forwards;
+    animation: dot_on 0.6s forwards;
 }
 
 
@@ -249,13 +393,13 @@ input[type="checkbox"] {
     color: #333333;
     font-weight: 300;
     font-size: 26px;
-    margin: 40px 0 16px;
+    margin: 40px 0 4px;
 }
 
 .smallFrame {
     display: inline-block;
     width:  198px;
-    height: 164px;
+    height: 163px;
 }
 
 .small {
@@ -274,13 +418,13 @@ input[type="checkbox"] {
 
 .bigFrame {
     float: right;
-    width: 394px;
+    width: 397px;
     height: 337px;
 }
 
 .big {
     margin: 0 auto;
-    width: 360px;
+    width: 362px;
     height: 300px;
     background-color: #4e5657;
 }
@@ -292,17 +436,8 @@ input[type="checkbox"] {
     background-color: #4e5657;
 }
 
-.seeAll a {
-    text-decoration: none;
-    color: #333333;
-    font-size: 18px;
-    display: block;
-    text-align: center;
-    width: 120px;
-    display: block;
-    margin: 0 auto;
-    padding-top: 10px;
-    border-top: solid 2px #4e5657;
+#grid2 .bigFrame {
+    float: left;
 }
 
 #line2 {
